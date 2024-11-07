@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.api import router
 from fastapi.middleware.cors import CORSMiddleware
-
+import os
 
 
 app = FastAPI()
@@ -21,4 +21,5 @@ def read_root():
 # Incluir esta parte solo cuando estás corriendo localmente
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=10000, reload=True)
+    port = int(os.getenv("PORT", 10000)) 
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
